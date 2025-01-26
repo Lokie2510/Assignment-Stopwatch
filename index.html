@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        body{
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            background-image: url(https://static.vecteezy.com/system/resources/previews/010/008/086/non_2x/background-dimension-3d-graphic-message-board-for-text-and-message-design-line-shadow-for-modern-web-design-free-vector.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+.container{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 3rem;
+    max-width: 700px;
+    background-color: rgba(101, 84, 84, 0.6);
+    border-radius: 45px;
+    box-shadow: 5px 5px 40px rgba(50, 5, 77, 0.6);
+    position: relative;
+    text-align: center;
+    
+}
+h1{
+    color: brown;
+    text-shadow: 5px 5px 15px rgb(60, 109, 99);
+    font-size:5vh;
+}
+.digit{
+    font-size: 300%;
+    font-weight: bold;
+    margin: 10px;
+}
+.dot{
+    font-size: 300%;
+}
+button{
+    padding: 5%;
+    margin: 5%;
+    border-radius: 30px;
+    cursor: pointer;
+    outline: rgb(82, 210, 82);
+    background-color: rgb(82, 210, 82);
+    color: beige;
+    font-size: large;
+    font-weight: bold;
+}
+button:hover{
+    background-color: rgb(32, 0, 128);
+}
+
+    
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STOP WATCH</h1>
+        <div id="time">
+            <span class="digit" id="hr">
+                00</span>
+           <span class="dot">:</span>
+            <span class="digit" id="min">
+                00</span>
+          <span class="dot">:</span>
+            <span class="digit" id="sec">
+                00</span>
+           <br>
+            <span class="countd" id="count"> 
+                00</span> 
+        </div>
+        <div id="buttons">
+            <button class="btn" id="start">
+                Start</button>
+            <button class="btn" id="stop">
+                Stop</button>
+            <button class="btn" id="reset">
+                Reset</button>
+        </div>
+    </div>
+
+
+    </div>
+
+<script>
+let startBtn = document.getElementById('start');
+let stopBtn = document.getElementById('stop');
+let resetBtn = document.getElementById('reset');
+
+let hour = 00;
+let minute = 00;
+let second = 00;
+let count = 00;
+
+startBtn.addEventListener('click', function () {
+    timer = true;
+    stopWatch();
+});
+
+stopBtn.addEventListener('click', function () {
+    timer = false;
+});
+
+resetBtn.addEventListener('click', function () {
+    timer = false;
+    hour = 0;
+    minute = 0;
+    second = 0;
+    count = 0;
+    document.getElementById('hr').innerHTML = "00";
+    document.getElementById('min').innerHTML = "00";
+    document.getElementById('sec').innerHTML = "00";
+    document.getElementById('count').innerHTML = "00";
+});
+
+function stopWatch() {
+    if (timer) {
+        count++;
+
+        if (count == 100) {
+            second++;
+            count = 0;
+        }
+
+        if (second == 60) {
+            minute++;
+            second = 0;
+        }
+
+        if (minute == 60) {
+            hour++;
+            minute = 0;
+            second = 0;
+        }
+
+        let hrs = hour;
+        let mins = minute;
+        let secs = second;
+        let counts= count;
+
+        if (hour < 10) {
+            hrs = "0" + hrs;
+        }
+
+        if (minute < 10) {
+            mins = "0" + mins;
+        }
+
+        if (second < 10) {
+            secs= "0" + secs;
+        }
+
+        if (count < 10) {
+            counts = "0" + counts;
+        }
+
+        document.getElementById('hr').innerHTML = hrs;
+        document.getElementById('min').innerHTML = mins;
+        document.getElementById('sec').innerHTML = secs;
+        document.getElementById('count').innerHTML = counts;
+        setTimeout(stopWatch, 10);
+    }
+}
+</script>
+
+
+</body>
+</html>
